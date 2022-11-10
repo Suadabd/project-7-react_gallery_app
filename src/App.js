@@ -18,7 +18,7 @@ const App = (props) => {
   //  console.log(App);
   const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&user_id=&tags=${tag}&per_page=24&format=json&nojsoncallback=1`;
 
-  const performSearch = (query= '') => { 
+  const performSearch = (query= '') => { }
 
     useEffect(() => {
 
@@ -33,10 +33,11 @@ const App = (props) => {
               setcomp(responseData.photos.photo)
           }
         
+        
 
         });
       
-    }
+    })
     return (
       <div className="container">
         <SearchForm onSearch={performSearch}/>
@@ -55,5 +56,7 @@ const App = (props) => {
     
      </div>
   )
-}}
+}
+
+
 export default App;
