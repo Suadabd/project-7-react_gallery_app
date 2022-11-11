@@ -1,9 +1,10 @@
 import React from 'react'
 ///Photo function responsible for rendering photo item wrapped in li for each phot returned from API
 const Photo = (props) => {
+  
   return (
     <li >
-      <img src={props.url}  alt='photo' />
+      <img src={props.url}  />
     </li>
   );
     
