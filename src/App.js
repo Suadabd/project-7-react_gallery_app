@@ -4,6 +4,7 @@ import apiKey  from "./config";
 
 import { Routes, Route, Navigate } from "react-router-dom"; 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 ///App components 
@@ -25,6 +26,8 @@ const App = (props) => {
   //  console.log(App);
   //const performSearch = (query= '') => { }
 
+
+  const navigate = useNavigate();
 //state
 const [cats, setCat] = useState([]);
 const [dogs, setDog] = useState([]);
@@ -34,6 +37,7 @@ const [photo, setPhoto] = useState([]);
 
 
 useEffect(() => {
+    
     for (let i in queries){
     
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&user_id=&tags=${i}&per_page=24&format=json&nojsoncallback=1`)
@@ -41,7 +45,8 @@ useEffect(() => {
       .then(responseData => {
           if(i  ==='cats') {
             setCat(responseData.photos.photo);
-            console.log(responseData);
+            // console.log(responseData);
+            navigate ("/cats");
           } if (i  ==='dogs') {
             setDog(responseData.photos.photo);
           } if (i  === 'computers'){
@@ -68,7 +73,6 @@ useEffect(() => {
           <Nav />
           <Routes>
 
-            <Route path ="/" element={<Navigate to="/cats" />} />
             <Route path ="/cats" element={<PhotoContainer data={cats} />} />
             <Route path ="/dogs" element={<PhotoContainer data={dogs} />} />
             <Route path ="/computers" element={<PhotoContainer data={computers} />} />
